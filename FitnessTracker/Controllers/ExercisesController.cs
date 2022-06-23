@@ -1,3 +1,4 @@
+using FitnessTracker.Models;
 using FitnessTracker.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,8 +14,21 @@ namespace FitnessTracker.Controllers
         {
             _es = es;
         }
-    }
 
-    [HttpPost]
+
+        [HttpPost]
+        public ActionResult<Exercise> Create([FromBody] Exercise newExercise)
+        {
+            try
+            {
+                Exercise created = _es.Create(newExercise);
+                return Ok(created);
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+    }
 
 }

@@ -1,3 +1,4 @@
+using FitnessTracker.Models;
 using FitnessTracker.Repositories;
 
 namespace FitnessTracker.Services
@@ -9,6 +10,11 @@ namespace FitnessTracker.Services
         public ExercisesService(ExercisesRepository repo)
         {
             _repo = repo;
+        }
+
+        internal Exercise Create(Exercise newExercise)
+        {
+            return _repo.Create(newExercise);
         }
     }
 }

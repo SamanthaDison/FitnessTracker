@@ -12,9 +12,11 @@ CREATE TABLE IF NOT EXISTS exercises(
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
     title VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
+    description VARCHAR(255),
     bodyPart VARCHAR(255) NOT NULL,
     equipment VARCHAR(255) NOT NULL,
     gifUrl VARCHAR(255) NOT NULL,
     target VARCHAR(255) NOT NULL
 ) default charset utf8 COMMENT '';
+
+DROP TABLE exercises 

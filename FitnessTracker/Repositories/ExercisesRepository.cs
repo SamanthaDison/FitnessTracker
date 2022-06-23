@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Data;
+using Dapper;
 using FitnessTracker.Interfaces;
 using FitnessTracker.Models;
 
@@ -16,7 +17,15 @@ namespace FitnessTracker.Repositories
 
         public Exercise Create(Exercise newData)
         {
-            throw new System.NotImplementedException();
+            string sql = @"
+           INSERT INTO exercises
+           (title, description, bodyPart, equipment, gifUrl, target)
+           VALUES
+           (@Title, @Description, @BodyPart, @Equipment, @GifUrl, @Target);
+           SELECT LAST_INSERT_ID()";
+            int id = _db.ExecuteScalar<int>(sql, newData);
+            newData.Id = id;
+            return newData;
         }
 
         public void Delete(int id)
